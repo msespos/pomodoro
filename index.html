@@ -40,6 +40,12 @@
         </div>
         <script>
         
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "1") {playAction()}
+                if (e.key === "2") {pause()}
+                if (e.key === "3") {stop()}
+            });
+
             const display = document.getElementById('display');
             const playButton = document.getElementById('play');
             const pauseButton = document.getElementById('pause');
@@ -101,16 +107,18 @@
                 start();
             }
 
-            playButton.addEventListener('click', playAction); 
-
-            pauseButton.addEventListener('click', () => {
+            function pause() {
                 if (currentAction !== 'pause') {
                     clearInterval(startCountdown);
                     currentAction = 'pause';
                 } else {
                     playAction();   
                 }
-            });
+            }
+
+            playButton.addEventListener('click', playAction); 
+
+            pauseButton.addEventListener('click', pause);
 
             stopButton.addEventListener('click', stop); 
 
