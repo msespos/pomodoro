@@ -45,8 +45,8 @@
           <button id="fifty">50/10</button>
         </div>
         <script>
-        
-            document.addEventListener("keydown", (e) => {
+                
+                document.addEventListener("keydown", (e) => {
                 if (e.key === "1") {playAction()}
                 if (e.key === "2") {pause()}
                 if (e.key === "3") {stop()}
@@ -58,79 +58,96 @@
             const stopButton = document.getElementById('stop');
             const alarm = document.getElementById('alarm');
 
-            let startWorkTime = 2700;
-            let startBreakTime = 900;
-            let mode = 'work';
-            let counter = startWorkTime;
-            let startCountdown = "";
-            let workDisplay = "45:00";
-            let currentAction = '';
+            // Time buttons 
+            const btn45 = document.getElementById('fortyfive');
+            const btn50 = document.getElementById('fifty');
+            const btn25 = document.getElementById('twentyfive');
 
-            function playAudio() {
-                alarm.play(); 
-            }
-
-            function showTime() {
-                let minutes = Math.floor(counter / 60); 
-                let seconds = counter % 60; 
-                time = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
-                display.innerHTML = time;
-            }
-
-            function countdown() {
-                if (counter === 0) {
-                    if (mode === 'work') {
-                        mode = 'break';
-                        counter = breakTime;
-                    } else if (mode === 'break') {
-                        mode = 'work';
-                        counter = workTime; 
-                    }
-                playAudio();
-                }
-                counter--;
-                showTime();   
-            }
-
-            function start() {
-                startCountdown = setInterval(countdown, 950);
-            }
-
-            function stop() {
-                clearInterval(startCountdown);
-                display.innerHTML = workDisplay;
-                mode = 'work';
-                workTime = startWorkTime;
-                breakTime = startBreakTime; 
-                counter = workTime;
-                startCountdown = "";
-                currentAction = '';
-            }
-
-            function playAction() {
-                if (currentAction === 'play') return; 
-                currentAction = 'play';
-                start();
-            }
-
-            function pause() {
-                if (currentAction !== 'pause') {
-                    clearInterval(startCountdown);
-                    currentAction = 'pause';
-                } else {
-                    playAction();   
-                }
-            }
-
-            playButton.addEventListener('click', playAction); 
-
-            pauseButton.addEventListener('click', pause);
-
-            stopButton.addEventListener('click', stop); 
-
-            let workTime = startWorkTime;
-            let breakTime = startBreakTime;
+            let workDisplay = "00:00";
             display.innerHTML = workDisplay;
+
+            //function that when this button is clicked it runs the function with start work time, and start break time
+            //workDisplay, startWorkTime, startBreakTime
+                let startWorkTime = 0;
+                let startBreakTime = 0;
+                let mode = 'work';
+                let counter = startWorkTime;
+                let startCountdown = "";
+                let currentAction = '';
+                let breakTime = startBreakTime;
+
+            function timer(startSeconds, breakSeconds, displayTime){
+                stop();
+                startWorkTime = startSeconds;
+                startBreakTime = breakSeconds;
+                workDisplay = displayTime;
+                display.innerHTML = workDisplay;
+ 
+
+                function playAudio() {
+                    alarm.play(); 
+                }
+    
+                function showTime() {
+                    let minutes = Math.floor(counter / 60); 
+                    let seconds = counter % 60; 
+                    let time = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+                    display.innerHTML = time;
+                }
+    
+                function countdown() {
+                    if (counter === 0) {
+                        if (mode === 'work') {
+                            mode = 'break';
+                            counter = startBreakTime;
+                        } else if (mode === 'break') {
+                            mode = 'work';
+                            counter = startWorkTime; 
+                        }
+                    playAudio();
+                    }
+                    counter--;
+                    showTime();   
+                }
+    
+                function start() {
+                    startCountdown = setInterval(countdown, 950);
+                }
+    
+                function stop() {
+                    clearInterval(startCountdown);
+                    display.innerHTML = workDisplay;
+                    mode = 'work';
+                    startWorkTime = startSeconds;
+                    breakTime = startBreakTime; 
+                    counter = startWorkTime;
+                    startCountdown = "";
+                    currentAction = '';
+                }
+    
+                function playAction() {
+                    if (currentAction === 'play') return; 
+                    currentAction = 'play';
+                    start();
+                }
+    
+                function pause() {
+                    if (currentAction !== 'pause') {
+                        clearInterval(startCountdown);
+                        currentAction = 'pause';
+                    } else {
+                        playAction();   
+                    }
+                }
+
+                playButton.addEventListener('click', playAction); 
+                pauseButton.addEventListener('click', pause);
+                stopButton.addEventListener('click', stop);  
+            }
+
+            btn25.addEventListener('click', ()=> {timer(1500, 300, "25:00")})
+            btn45.addEventListener('click', ()=> {timer(2700, 900, "45:00")})
+            btn50.addEventListener('click', ()=> {timer(3000, 600, "50:00")})
 
         </script>
     </body>
