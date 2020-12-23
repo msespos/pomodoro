@@ -2,4 +2,7 @@ This is a pomodoro timer for use in improving work habits. When started, it coun
 
 I paired on this project with dyskgo. Thanks for all of their work!
 
+Update: There are now three time interval options: 25/5, 45/15, and 50/10 (work time / break time).
+Special thanks to Cat Queen for adding this multiple time interval functionality!
+
 https://msespos.github.io/pomodoro/
