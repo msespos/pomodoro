@@ -40,9 +40,9 @@
         </div>
         <br><br><br>
         <div id="buttons">
-          <button id="twentyfive">25/5</button>
-          <button id="fortyfive">45/15</button>
-          <button id="fifty">50/10</button>
+          <button id="twentyfiveohfive">25/5</button>
+          <button id="twentyfiveten">25/10</button>
+          <button id="fiftyfifteen">50/15</button>
         </div>
         <script>
                 
@@ -53,9 +53,9 @@
             const alarm = document.getElementById('alarm');
 
             // Time buttons 
-            const btn45 = document.getElementById('fortyfive');
-            const btn50 = document.getElementById('fifty');
-            const btn25 = document.getElementById('twentyfive');
+            const btn2505 = document.getElementById('twentyfiveohfive');
+            const btn2510 = document.getElementById('twentyfiveten');
+            const btn5015 = document.getElementById('fiftyfifteen');
 
             let workDisplay = "00:00";
             display.innerHTML = workDisplay;
@@ -144,14 +144,14 @@
                 stopButton.addEventListener('click', stop);  
             }
 
-            btn25.addEventListener('click', ()=> {timer(1500, 300, "25:00")})
-            btn45.addEventListener('click', ()=> {timer(2700, 900, "45:00")})
-            btn50.addEventListener('click', ()=> {timer(3000, 600, "50:00")})
+            btn2505.addEventListener('click', ()=> {timer(1500, 300, "25:00")})
+            btn2510.addEventListener('click', ()=> {timer(1500, 600, "25:00")})
+            btn5015.addEventListener('click', ()=> {timer(3000, 900, "50:00")})
 
             document.addEventListener("keydown", (e) => {
                 if (e.key === "q") {timer(1500, 300, "25:00")}
-                if (e.key === "w") {timer(2700, 900, "45:00")}
-                if (e.key === "e") {timer(3000, 600, "50:00")}
+                if (e.key === "w") {timer(1500, 600, "25:00")}
+                if (e.key === "e") {timer(3000, 900, "50:00")}
             });
 
         </script>
