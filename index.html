@@ -42,7 +42,7 @@
         <div id="buttons">
           <button id="twentyfiveohfive">25/5</button>
           <button id="twentyfiveten">25/10</button>
-          <button id="fiftyfifteen">50/15</button>
+          <button id="fiftyten">50/10</button>
         </div>
         <script>
                 
@@ -55,7 +55,7 @@
             // Time buttons 
             const btn2505 = document.getElementById('twentyfiveohfive');
             const btn2510 = document.getElementById('twentyfiveten');
-            const btn5015 = document.getElementById('fiftyfifteen');
+            const btn5015 = document.getElementById('fiftyten');
 
             let workDisplay = "00:00";
             display.innerHTML = workDisplay;
@@ -146,12 +146,12 @@
 
             btn2505.addEventListener('click', ()=> {timer(1500, 300, "25:00")})
             btn2510.addEventListener('click', ()=> {timer(1500, 600, "25:00")})
-            btn5015.addEventListener('click', ()=> {timer(3000, 900, "50:00")})
+            btn5015.addEventListener('click', ()=> {timer(3000, 600, "50:00")})
 
             document.addEventListener("keydown", (e) => {
                 if (e.key === "q") {timer(1500, 300, "25:00")}
                 if (e.key === "w") {timer(1500, 600, "25:00")}
-                if (e.key === "e") {timer(3000, 900, "50:00")}
+                if (e.key === "e") {timer(3000, 600, "50:00")}
             });
 
         </script>
